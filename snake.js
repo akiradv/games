@@ -60,6 +60,7 @@ function draw() {
 
     if (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
         clearInterval(game);
+        document.getElementById('gameOverMessage').style.display = 'block';
         document.getElementById('restartButton').style.display = 'block';
         return;
     }
@@ -85,6 +86,7 @@ function restartGame() {
     snake[0] = { x: 9 * box, y: 10 * box };
     direction = null;
     score = 0;
+    document.getElementById('gameOverMessage').style.display = 'none';
     document.getElementById('restartButton').style.display = 'none';
     clearInterval(game);
     game = setInterval(draw, speed);

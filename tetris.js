@@ -28,12 +28,12 @@ function playSuccessSound() {
 
 function createParticles(x, y) {
     const particles = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 50; i++) {
         particles.push({
-            x: x + Math.random() * 20,
+            x: x + Math.random() * 240,
             y: y + Math.random() * 20,
-            dx: (Math.random() - 0.5) * 2,
-            dy: (Math.random() - 0.5) * 2,
+            dx: (Math.random() - 0.5) * 4,
+            dy: (Math.random() - 0.5) * 4,
             life: 100
         });
     }
@@ -151,6 +151,7 @@ function draw() {
     drawGrid();
     drawMatrix(arena, {x: 0, y: 0});
     drawMatrix(player.matrix, player.pos);
+    updateParticles();
     drawParticles();
 
     nextPieceContext.clearRect(0, 0, nextPieceCanvas.width, nextPieceCanvas.height);
