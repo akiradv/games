@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Tetris</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="content">
+        <h1>Jogo Tetris</h1>
+        <button id="backButton" onclick="window.location.href='index.html'">Voltar ao Menu</button>
+        <div style="display: flex; align-items: flex-start; justify-content: center; margin-top: 20px;">
+            <div style="margin-right: 40px; text-align: right;">
+                <div id="score" style="margin-top: 10px; color: white;">Pontuação: 0</div>
+                <div id="level" style="margin-top: 10px; color: white;">Nível: 0</div>
+            </div>
+            <canvas id="tetrisCanvas" width="240" height="400"></canvas>
+            <div style="margin-left: 40px; text-align: center;">
+                <div style="color: white; margin-bottom: 10px;">Próxima Peça</div>
+                <canvas id="nextPieceCanvas" width="100" height="100" style="background-color: #1e1e1e; border: 2px solid #fff; border-radius: 5px;"></canvas>
+            </div>
+        </div>
+        <button id="restartButton" style="display: none; margin-top: 20px;" onclick="restartGame()">Reiniciar</button>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="lofi-music.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <audio id="successSound">
+        <source src="sounds/success-sound.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <footer>
+        <p>Desenvolvido com ❤️ por <a href="https://github.com/akiradv" target="_blank">AkiraDev</a></p>
+    </footer>
+    <script src="tetris.js"></script>
+</body>
+</html> 

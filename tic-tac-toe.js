@@ -1,6 +1,7 @@
 let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 let gameActive = true;
+let notificationActive = false; // Variável para controlar o estado da notificação
 
 const winningConditions = [
     [0, 1, 2],
@@ -17,6 +18,7 @@ const cells = document.querySelectorAll('.cell');
 const notification = document.getElementById('notification');
 const notificationMessage = document.getElementById('notification-message');
 const progressBar = document.getElementById('progress-bar');
+const restartButton = document.getElementById('restartButton');
 
 // Obter dificuldade da URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -40,12 +42,14 @@ function handleCellClick(event) {
     if (checkWin()) {
         showNotification(`Jogador ${currentPlayer} venceu!`);
         gameActive = false;
+        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
     if (board.every(cell => cell !== '')) {
         showNotification('Empate!');
         gameActive = false;
+        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
@@ -72,12 +76,14 @@ function aiMove() {
     if (checkWin()) {
         showNotification(`Jogador ${currentPlayer} venceu!`);
         gameActive = false;
+        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
     if (board.every(cell => cell !== '')) {
         showNotification('Empate!');
         gameActive = false;
+        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
@@ -117,9 +123,11 @@ function restartGame() {
     board = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
     gameActive = true;
+    notificationActive = false; // Resetar o estado da notificação
     cells.forEach(cell => {
         cell.textContent = '';
     });
+    restartButton.style.display = 'block'; // Mostrar o botão de reiniciar
     hideNotification();
 }
 
@@ -127,13 +135,19 @@ function showNotification(message) {
     notificationMessage.textContent = message;
     notification.style.display = 'block';
     progressBar.style.width = '100%';
+    notificationActive = true; // Ativar o estado da notificação
     setTimeout(() => {
         progressBar.style.width = '0%';
     }, 10); // Inicia a animação da barra de progresso
-    setTimeout(hideNotification, 3000); // Esconde a notificação após 3 segundos
+    setTimeout(() => {
+        if (notificationActive) {
+            hideNotification();
+            restartGame(); // Reinicia o jogo após esconder a notificação
+        }
+    }, 3000); // Esconde a notificação após 3 segundos
 }
 
 function hideNotification() {
     notification.style.display = 'none';
-    restartGame(); // Reinicia o jogo após esconder a notificação
+    notificationActive = false; // Desativar a reinicialização automática
 } 
