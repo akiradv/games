@@ -11,6 +11,10 @@ let food = {
 let score = 0;
 let game;
 
+// Obter a dificuldade da URL
+const urlParams = new URLSearchParams(window.location.search);
+let speed = parseInt(urlParams.get('difficulty')) || 100; // Velocidade padrão
+
 document.addEventListener('keydown', setDirection);
 
 function setDirection(event) {
@@ -82,7 +86,8 @@ function restartGame() {
     direction = null;
     score = 0;
     document.getElementById('restartButton').style.display = 'none';
-    game = setInterval(draw, 100);
+    clearInterval(game);
+    game = setInterval(draw, speed);
 }
 
-game = setInterval(draw, 100); 
+game = setInterval(draw, speed);

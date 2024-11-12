@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Dificuldade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="content">
+        <h1>Escolha a Dificuldade</h1>
+        <select id="difficulty">
+            <option value="150">Fácil</option>
+            <option value="100" selected>Médio</option>
+            <option value="50">Difícil</option>
+        </select>
+        <button onclick="startGame()">Iniciar Jogo</button>
+        <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
+    </div>
+    <footer>
+        <p>Desenvolvido com ❤️ por <a href="https://github.com/akiradv" target="_blank">AkiraDev</a></p>
+    </footer>
+    <script>
+        function startGame() {
+            const difficulty = document.getElementById('difficulty').value;
+            window.location.href = `snake.html?difficulty=${difficulty}`;
+        }
+    </script>
+</body>
+</html> 
