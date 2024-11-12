@@ -9,20 +9,20 @@
 <body>
     <div class="content">
         <h1>Escolha a Dificuldade</h1>
-        <select id="difficulty">
-            <option value="150">Fácil</option>
-            <option value="100" selected>Médio</option>
-            <option value="50">Difícil</option>
-        </select>
-        <button onclick="startGame()">Iniciar Jogo</button>
-        <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
+        <div class="difficulty-buttons">
+            <button onclick="startGame(150)">Fácil</button>
+            <button onclick="startGame(100)">Médio</button>
+            <button onclick="startGame(50)">Difícil</button>
+        </div>
+        <div class="action-buttons">
+            <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
+        </div>
     </div>
     <footer>
         <p>Desenvolvido com ❤️ por <a href="https://github.com/akiradv" target="_blank">AkiraDev</a></p>
     </footer>
     <script>
-        function startGame() {
-            const difficulty = document.getElementById('difficulty').value;
+        function startGame(difficulty) {
             window.location.href = `snake.html?difficulty=${difficulty}`;
         }
     </script>
