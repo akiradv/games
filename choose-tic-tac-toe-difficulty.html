@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Dificuldade - Jogo da Velha</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="content">
+        <h1>Escolha a Dificuldade do Jogo da Velha</h1>
+        <div class="difficulty-buttons">
+            <button onclick="startTicTacToeGame('easy')">Fácil</button>
+            <button onclick="startTicTacToeGame('medium')">Médio</button>
+            <button onclick="startTicTacToeGame('hard')">Difícil</button>
+        </div>
+        <div class="action-buttons">
+            <button onclick="window.location.href='index.html'">Voltar ao Menu</button>
+        </div>
+    </div>
+    <footer>
+        <p>Desenvolvido com ❤️ por <a href="https://github.com/akiradv" target="_blank">AkiraDev</a></p>
+    </footer>
+    <script>
+        function startTicTacToeGame(difficulty) {
+            window.location.href = `tic-tac-toe.html?difficulty=${difficulty}`;
+        }
+    </script>
+</body>
+</html> 
