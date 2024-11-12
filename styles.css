@@ -54,10 +54,9 @@ canvas {
 footer {
     width: 100%;
     text-align: center;
-    background-color: #1a1a1a;
+    background-color: #121212;
     color: #ccc;
     padding: 5px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
