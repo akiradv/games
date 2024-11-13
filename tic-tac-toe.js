@@ -42,14 +42,12 @@ function handleCellClick(event) {
     if (checkWin()) {
         showNotification(`Jogador ${currentPlayer} venceu!`);
         gameActive = false;
-        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
     if (board.every(cell => cell !== '')) {
         showNotification('Empate!');
         gameActive = false;
-        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
@@ -67,7 +65,7 @@ function aiMove() {
     } else if (difficulty === 'medium') {
         moveIndex = getBlockingMove() || getRandomMove();
     } else if (difficulty === 'hard') {
-        moveIndex = getWinningMove() || getBlockingMove() || getRandomMove();
+        moveIndex = minimax(board, currentPlayer).index;
     }
 
     board[moveIndex] = currentPlayer;
@@ -76,14 +74,12 @@ function aiMove() {
     if (checkWin()) {
         showNotification(`Jogador ${currentPlayer} venceu!`);
         gameActive = false;
-        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
     if (board.every(cell => cell !== '')) {
         showNotification('Empate!');
         gameActive = false;
-        restartButton.style.display = 'none'; // Esconder o botão de reiniciar
         return;
     }
 
@@ -127,7 +123,6 @@ function restartGame() {
     cells.forEach(cell => {
         cell.textContent = '';
     });
-    restartButton.style.display = 'block'; // Mostrar o botão de reiniciar
     hideNotification();
 }
 
@@ -142,7 +137,7 @@ function showNotification(message) {
     setTimeout(() => {
         if (notificationActive) {
             hideNotification();
-            restartGame(); // Reinicia o jogo após esconder a notificação
+            restartGame(); // Reinicia o jogo após a notificação desaparecer
         }
     }, 3000); // Esconde a notificação após 3 segundos
 }
@@ -150,4 +145,62 @@ function showNotification(message) {
 function hideNotification() {
     notification.style.display = 'none';
     notificationActive = false; // Desativar a reinicialização automática
+}
+
+function minimax(newBoard, player) {
+    const availSpots = newBoard.map((val, idx) => val === '' ? idx : null).filter(val => val !== null);
+
+    if (checkWinCondition(newBoard, 'X')) {
+        return { score: -10 };
+    } else if (checkWinCondition(newBoard, 'O')) {
+        return { score: 10 };
+    } else if (availSpots.length === 0) {
+        return { score: 0 };
+    }
+
+    const moves = [];
+
+    for (let i = 0; i < availSpots.length; i++) {
+        const move = {};
+        move.index = availSpots[i];
+        newBoard[availSpots[i]] = player;
+
+        if (player === 'O') {
+            const result = minimax(newBoard, 'X');
+            move.score = result.score;
+        } else {
+            const result = minimax(newBoard, 'O');
+            move.score = result.score;
+        }
+
+        newBoard[availSpots[i]] = '';
+        moves.push(move);
+    }
+
+    let bestMove;
+    if (player === 'O') {
+        let bestScore = -Infinity;
+        for (let i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    } else {
+        let bestScore = Infinity;
+        for (let i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    }
+
+    return moves[bestMove];
+}
+
+function checkWinCondition(board, player) {
+    return winningConditions.some(condition => {
+        return condition.every(index => board[index] === player);
+    });
 } 
