@@ -24,6 +24,10 @@ Os jogos estão disponíveis online. Você pode jogá-los acessando o seguinte l
 
 [Jogos - AkiraDev](https://akiradv.github.io/games)
 
+## 📷 Capturas de Tela
+
+![Exemplo de Notificação](images/games.png)
+
 ## Contribuições
 
 Contribuições são bem-vindas! Se você deseja contribuir para este projeto, siga estas etapas:
