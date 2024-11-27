@@ -127,7 +127,7 @@ footer a:hover {
 #restartButton {
     position: absolute;
     top: calc(50% + 60px); /* Aumenta o espaço vertical abaixo da mensagem */
-    left: 49%; /* Move o botão um pouco para a esquerda */
+    left: 49%; /* Move o botão para o centro */
     transform: translate(-50%, 0);
     display: none; /* Inicialmente escondido */
     z-index: 1000;
@@ -142,4 +142,17 @@ footer a:hover {
 
 #restartButton:hover {
     background-color: #1565c0;
+}
+
+/* Estilos específicos para o jogo da cobrinha */
+#gameCanvas {
+    background-color: #181825; /* Cor de fundo do canvas do jogo da cobrinha */
+    border: 2px solid #ffffff; /* Borda do canvas */
+}
+
+#score {
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffffff; /* Cor do texto do score */
+    margin-top: 10px; /* Espaço acima do score */
 }

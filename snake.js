@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const box = 20;
 let snake = [];
 snake[0] = { x: 9 * box, y: 10 * box };
-let direction;
+let direction = 'RIGHT';
 let food = {
     x: Math.floor(Math.random() * 19 + 1) * box,
     y: Math.floor(Math.random() * 19 + 1) * box
@@ -84,8 +84,9 @@ function collision(head, array) {
 function restartGame() {
     snake = [];
     snake[0] = { x: 9 * box, y: 10 * box };
-    direction = null;
+    direction = 'RIGHT';
     score = 0;
+    document.getElementById('score').innerText = `Score: ${score}`;
     document.getElementById('gameOverMessage').style.display = 'none';
     document.getElementById('restartButton').style.display = 'none';
     clearInterval(game);
